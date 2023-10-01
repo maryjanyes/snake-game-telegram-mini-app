@@ -8,7 +8,7 @@
 This is a basic Telegram Web App implemented using plain JavaScript, HTML, and CSS. This app is to show how a developer can create and configure an interactive cool game.
 
 - App is available via direct link: https://t.me/snake-game-web-app/app
-- Deployment URL: [https://maryjanyes.github.io/snake-game-web-app/](https://maryjanyes.github.io/snake-game-web-app/)
+- Deployment URL: [https://maryjanyes.github.io/snake-game-telegram-mini-app/](https://maryjanyes.github.io/snake-game-telegram-mini-app/)
 
 ## Features
 - Game board and characters configuration.
