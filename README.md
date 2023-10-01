@@ -1,14 +1,14 @@
 <p align="center">
   <br>
-  <img width="240" src="./assets/tapps.png" alt="logo of telegram web apps">
+  <img width="240" src="./assets/logo.png" alt="web app game logo">
   <br>
 </p>
 
 # Telegram `Snake Game` Web App generator Example
 This is a basic Telegram Web App implemented using plain JavaScript, HTML, and CSS. This app is to show how a developer can create and configure an interactive cool game.
 
-- App is available via direct link: https://t.me/simple_telegram_web_app_bot/app
-- Deployment URL: [https://twa-dev.github.io/simple-telegram-web-app/](https://twa-dev.github.io/vanilla-js-boilerplate/)
+- App is available via direct link: https://t.me/snake-game-web-app/app
+- Deployment URL: [https://maryjanyes.github.io/snake-game-web-app/](https://maryjanyes.github.io/snake-game-web-app/)
 
 ## Features
 - Game board and characters configuration.
