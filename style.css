@@ -1,0 +1,20 @@
+#gameBoard {
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+}
+
+#gameBoard button {
+    margin-top: 10px;
+}
+
+#gameBoardViews__LaunchGame {
+    padding: 10px;
+    background-color: rgb(200, 252, 252);
+}
+
+#gameBoardViews__MainGame {
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(215, 171, 255);
+}
