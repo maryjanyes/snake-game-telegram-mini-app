@@ -1,6 +1,6 @@
 <p align="center">
   <br>
-  <img width="240" src="./assets/logo.png" alt="web app game logo">
+  <img width="240" src="./assets/logo.jpg" alt="web app game logo">
   <br>
 </p>
 
@@ -44,6 +44,7 @@ Let's take simple modification example:
         };
     }
 </code>
+
 - After
 <code>
     class GameBoard {
