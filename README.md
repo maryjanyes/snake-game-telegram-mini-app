@@ -7,7 +7,7 @@
 # Telegram `Snake Game` Web App generator Example
 This is a basic Telegram Web App implemented using plain JavaScript, HTML, and CSS. This app is to show how a developer can create and configure an interactive cool game.
 
-- App is available via direct link: https://t.me/snake-game-web-app/app
+- App is available via Bot: https://t.me/SunwebMyBot
 - Deployment URL: [https://maryjanyes.github.io/snake-game-telegram-mini-app/](https://maryjanyes.github.io/snake-game-telegram-mini-app/)
 
 ## Features
@@ -15,6 +15,8 @@ This is a basic Telegram Web App implemented using plain JavaScript, HTML, and C
 - Easy to understand and modify.
 
 ## Getting Started
+#### Short description of this Mini App
+A mini app that provides a demo of sample fun Snake Game, so we can bring more developers to work on similar apps
 
 ### Prerequisites
 
@@ -35,7 +37,7 @@ Open `index.html` in your preferred code editor or IDE.
 Feel free to customize this web app to suit your needs. You can modify the HTML, CSS, and JavaScript files as required.
 
 Let's take simple modification example:
-- Before
+##### Before
 <code>
     class GameBoard {
         skins = {
@@ -45,8 +47,9 @@ Let's take simple modification example:
     }
 </code>
 
-- After
+##### After
 <code>
+    // Modify game board skin theme
     class GameBoard {
         skins = {
             forest: 'forest',
@@ -54,6 +57,12 @@ Let's take simple modification example:
         };
     }
 </code>
+<style>
+    <!-- Add different screen theme -->
+    div.gamePlayer.gamePlayerSkin_ocean {
+        background-color: blue;
+    }
+</style>
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
