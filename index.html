@@ -6,15 +6,32 @@
         <title>Snake Game - TG Web App</title>
         <link rel="ico" href="./assets/logo.ico" />
         <link rel="stylesheet" href="./style.css" />
+        <script src="https://telegram.org/js/telegram-web-app.js"></script>
     </head>
     <body>
         <main id="gameBoard">
             <div id="gameBoardViews__LaunchGame">
                 <section id="gameBoardSection__SelectHero">
-                    <button id="gameBoardAction__PickHero">Pick hero</button>
+                    <div id="gameBoardViews__HeroVariants">
+                        <div id="gameBoardViews__HeroSkins">
+                            <p>Skin color</p>
+                            <div class="skinsContainer"></div>
+                        </div>
+                        <div id="gameBoardViews__HeroMoods">
+                            <p>Mood</p>
+                            <div class="moodsContainer"></div>
+                        </div>
+                    </div>
+                    <button id="gameBoardAction__PickHero">Lock hero</button>
                 </section>
                 <section id="gameBoardSection__SelectLevel">
-                    <button id="gameBoardAction__PickLevel">Pick level</button>
+                    <div id="gameBoardViews__LevelVariants">
+                        <div class="levelVariantsContainer"></div>
+                    </div>
+                    <button id="gameBoardAction__PickLevel">Lock level</button>
+                </section>
+                <section id="gameBoardSection__Name">
+                    <input id="gameBoardViews__HeroName" placeholder="Pick name" />
                 </section>
                 <button id="gameBoardAction__Launch">Launch game</button>
             </div>

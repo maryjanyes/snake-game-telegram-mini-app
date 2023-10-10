@@ -1,9 +1,13 @@
 // @name SnakeGame
 // @description A simple, fun game supports Web UI that allows user to play snake in real time and earn rewards.
 
+// TODO:
+// Define movements.
+// Define collisions.
 // Real user data.
 class SnakeGame {
     players;
+    playerSettings;
     gameInProgress;
     winner;
     board;
@@ -22,6 +26,12 @@ class SnakeGame {
         };
         this.uiElements = {
             gameBoard: document.getElementById('gameBoard'),
+            gameHeroVariants: document.getElementById('gameBoardViews__HeroVariants'),
+            gameLevelVariants: document.getElementById('gameBoardViews__LevelVariants'),
+        };
+        this.playerSettings = {
+            level: null,
+            player: null,
         };
         this.initUI();
     }
@@ -29,6 +39,39 @@ class SnakeGame {
     initUI() {
         if (this.uiControls.launchGame) {
             this.uiControls.launchGame.onclick = this.start.bind(this);
+        }
+
+        if (this.uiElements.gameHeroVariants) {
+            const heroSkins = SnakeGameCharacter.getSkins();
+            const heroMoods = SnakeGameCharacter.getMoods();
+            const gameLevels = SnakeGameBoard.getSkins();
+            const heroSkinsContainer = document.querySelector('#gameBoardViews__HeroSkins .skinsContainer');
+            const heroMoodsContainer = document.querySelector('#gameBoardViews__HeroMoods .moodsContainer');
+            const levelVariants = document.querySelector('#gameBoardViews__LevelVariants .levelVariantsContainer');
+
+            Object.keys(heroSkins).map(skin => {
+                const skinElement = document.createElement('div');
+                skinElement.id = `heroSkin_${heroSkins[skin]}`;
+                skinElement.className = "heroSkinAny";
+
+                heroSkinsContainer.appendChild(skinElement);
+            });
+
+            Object.keys(heroMoods).map(mood => {
+                const moodElement = document.createElement('div');
+                moodElement.id = `heroMood_${heroMoods[mood]}`;
+                moodElement.className = "heroMoodAny";
+
+                heroMoodsContainer.appendChild(moodElement);
+            });
+
+            Object.keys(gameLevels).map(level => {
+                const levelElement = document.createElement('div');
+                levelElement.id = `gameLevel_${gameLevels[level]}`;
+                levelElement.className = "gameLevelAny";
+
+                levelVariants.appendChild(levelElement);
+            });
         }
     }
 
@@ -76,26 +119,55 @@ class SnakeGame {
 class SnakeGamePlayer {
     rewards;
     score;
+    levelTime;
     name;
+    speed;
     character;
+    uiControls;
+    uiElements;
 
-    constructor(name, existedRewards) {
+    constructor(name) {
         this.name = name;
         this.score = 0;
-        this.rewards = existedRewards || 0;
+        this.levelTime = 0;
+        this.speed = 10;
         this.character = null;
+        this.uiElements = {
+            player: null,
+        };
     }
 
-    bindCharacter(skinColor, bodyLength, mood) {
+    initUI(gameView) {
+        const playerElement = document.createElement('div');
+        playerElement.setAttribute('player-name', this.name);
+        playerElement.className = `gamePlayer gamePlayerSkin_${this.character.skinColor}`;
+        playerElement.style.width = this.character.bodyLength + 'px';
+        this.uiElements.player = playerElement;
+
+        gameView.appendChild(playerElement);
+    }
+
+    bindCharacter(gameView, skinColor, bodyLength, mood) {
         this.character = new SnakeGameCharacter(skinColor, bodyLength, mood);
+        this.initUI(gameView, this.name);
     }
 
     unbindCharacter() {
         this.character = null;
     }
 
-    walk(distance, direction) {
-        console.log(`Snake crawls to distance ${distance} and direction ${direction}...`);
+    move(distanceInPixels, direction) {
+        console.log(`Snake crawls to distance ${distanceInPixels} and to ${direction}...`);
+
+        this.uiElements.player.style[direction] = `${distanceInPixels}px`;
+    }
+
+    increaseReward(add) {
+        this.rewards = this.rewards + add;
+    }
+
+    increaseSpeed(add) {
+        this.speed = this.speed + add;
     }
 }
 
@@ -136,17 +208,49 @@ class SnakeGameBoard {
         this.maxСollisionsToLoose = maxСollisionsToLoose || 10;
         this.uiElements = {
             mainView: null,
+            movePlayerControls: null,
         };
     }
 
-    initUI(mainGameView) {
-        this.uiElements.mainView = document.createElement('div');
-        this.uiElements.mainView.setAttribute('id', 'gameBoardViews__MainGame');
+    initUI(mainGameView, heroName) {
+        mainGameView.innerHTML =
+            '<div id="gameBoardViews__PlayerControls">' +
+                '<button id="controlLeft">l</button>' +
+                '<button id="controlTop">t</button>' +
+                '<button id="controlRight">r</button>' +
+                '<button id="controlBottom">b</button>' +
+            '</div>' +
+            '<div id="gameBoardViews__MainGame"></div>';
+        this.uiElements.mainView = document.getElementById('gameBoardViews__MainGame');
+        this.uiElements.movePlayerControls = document.getElementById('gameBoardViews__PlayerControls');
 
-        // TODO: Set skin color, etc.
-        
-        mainGameView.innerHTML = '';
-        mainGameView.appendChild(this.uiElements.mainView);
+        const player = new SnakeGamePlayer();
+        player.bindCharacter(this.uiElements.mainView);
+
+        ['left', 'right', 'top', 'bottom'].forEach(control => {
+            const controlElement =
+                document.getElementById(`control${control[0].toUpperCase()}${control.slice(1, control.length)}`);
+            
+            controlElement.addEventListener('click', e => {
+                e.preventDefault();
+
+                let reverseDirection;
+
+                if (control === 'left') {
+                    reverseDirection = 'right';
+                } else if (control === 'right') {
+                    reverseDirection = 'left';
+                } else if (control === 'top') {
+                    reverseDirection = 'bottom';
+                } else if (control === 'bottom') {
+                    reverseDirection = 'top';
+                }
+
+                const currentDistance = parseInt(player.uiElements.player.style[reverseDirection] || 0);
+
+                player.move(currentDistance + 2, reverseDirection);
+            });
+        });
     }
 
     static getSkins() {

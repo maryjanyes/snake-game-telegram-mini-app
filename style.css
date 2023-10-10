@@ -1,7 +1,6 @@
 #gameBoard {
     text-align: center;
     width: 100%;
-    padding: 10px;
 }
 
 #gameBoard button {
@@ -11,10 +10,101 @@
 #gameBoardViews__LaunchGame {
     padding: 10px;
     background-color: rgb(200, 252, 252);
+    min-height: 400px;
+}
+
+#gameBoardViews__HeroVariants, #gameBoardViews__LevelVariants {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 300px;
+}
+
+#gameBoardViews__HeroSkins .skinsContainer, #gameBoardViews__HeroMoods .moodsContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+}
+
+#gameBoardViews__HeroSkins .skinsContainer > div, #gameBoardViews__HeroMoods .moodsContainer > div {
+    width: 60px;
+    height: 40px;
+    margin: 1px;
+}
+
+#gameBoardViews__LevelVariants .levelVariantsContainer {
+    display: flex;
+}
+
+#gameBoardViews__LevelVariants .levelVariantsContainer, #gameBoardSection__Name {
+    margin-top: 10px;
 }
 
 #gameBoardViews__MainGame {
     width: 100%;
-    padding: 10px;
     background-color: rgb(215, 171, 255);
+    min-height: 400px;
+}
+
+#gameBoardViews__PlayerControls {
+    max-width: 100px;
+    margin: auto;
+    padding: 40px 0;
+}
+
+#gameBoardViews__PlayerControls #controlTop {
+    position: relative;
+    bottom: 20px;
+}
+
+#gameBoardViews__PlayerControls #controlBottom {
+    position: relative;
+    top: 20px;
+    right: 40px;
+    width: 20px;
+}
+
+div#heroSkin_punshRed {
+    background-color: red;
+}
+
+div#heroSkin_punshGreen {
+    background-color: green;
+}
+
+div.heroMoodAny {
+    background-color: gray;
+    cursor: pointer;
+}
+
+div.heroSkinAny {
+    cursor: pointer;
+}
+
+div.gameLevelAny {
+    cursor: pointer;
+    width: 60px;
+    height: 40px;
+    margin: 1px;
+    background-color: gray;
+}
+
+div.heroMoodAny:hover, div.gameLevelAny:hover, .heroSkinAny:hover {
+    scale: 0.8;
+    transition: 0.5s scale;
+}
+
+div.gamePlayer {
+    position: relative;
+    height: 24px;
+    border-radius: 12px;
+}
+
+div.gamePlayer.gamePlayerSkin_punshGreen {
+    background-color: green;
+}
+
+div.gamePlayer.gamePlayerSkin_punshRed {
+    background-color: brown;
 }
